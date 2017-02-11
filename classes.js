@@ -1,16 +1,37 @@
 class Shape {
 
+    
     /** @param {String} shapeName  - name of the current shape*/
     constructor(shapeName) {
-        var asd = 3;
-        this.allowedShapes = ['square', 'rectangle', 'circle'];
-        this.shapeName = shapeName;
+        this._shapeName = shapeName;
         console.log(`${shapeName} has has been created!`);
     }
-    _validateShape() {
-        console.log(asd);
-        return this.allowedShapes.indexOf(this.shapeName) != -1;
+    printName() {
+        console.log(`I am ${this.shapeName}`);
+    }
+
+    static createShape() {
+        return new Shape("CREATOR");
+    }
+
+    get shapeName() {
+        console.log(`Returning shapename ${this._shapeName}`);
+        return this._shapeName;
+    }
+
+    set shapeName(value) {
+        console.log(`Setting shapeName to ${value}, current value is ${this.shapeName}`);
+        this._shapeName = value;
     }
 }
-var shape = new Shape(323423432);
-console.log(`Shape is ${shape._validateShape() ? 'valid' : 'invalid'} `);
+
+class Rectangle extends Shape {
+    printName() {
+        console.log("Calling super:");
+        super.printName();
+    }
+}
+
+var shape2 = Shape.createShape();
+shape2.shapeName = 4;
+console.log(shape2.shapeName)
