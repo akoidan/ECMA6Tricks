@@ -27,7 +27,17 @@ function f2(p, callback) {
 }
 
 function mainFunc(p1, p2, callback) {
-    Promise.all([])
+    Promise.all([
+        new Promise(function (resolve) {
+            f1(p1, function (ok, err) {
+                resolve({ok: ok, err: err});
+            });
+        }),
+        new Promise(function (resolve) {
+            f2(p2, function (ok, err) {
+                resolve({ok: ok, err: err});
+            });
+        })])
         .then(function (allData) {
             if (!allData[0].err && !allData[1].err) {
                 callback("OK")
