@@ -1,0 +1,65 @@
+doctype
+html
+    head
+        title Jade lol
+    body
+        //- wont see me
+        // can see mee
+        div: span
+        div
+            span
+        div dddddddddd
+            br
+            div(:id=123)
+            |asdasd
+        #asd lolka
+        ul
+            li#bbp_list_item
+                a(href='#') lolka
+        - myName = "andrew"
+        p Hello #{myName}
+        p= myName
+        p(attr="#{myName}")
+        p 2x2 = #{2*2}
+        - heroes = ['a', 'b', 'c', 'd']
+        - bq = "tagname"
+        #{bq} asdf
+        - fnI = {"type": "text", "name": "fName"}
+        span First Name
+        input(type=fnI.type, name=fnI.name)
+        - someInfo = "<i> some info</i>"
+        p=someInfo
+        p !{someInfo}
+        asdf
+        div
+            - if (new Date().getHours() >= 12) {
+            h3 day time
+            - } else {
+            h3 night time
+            - }
+        - a = 3
+        case a
+            when 1
+                h1 h1
+            when 2
+                h2 h2
+            default
+                h3 h3
+        - month = ['jan', 'feb']
+        ul
+            -for (var i = 0; i< month.length; i++) {
+            li=month[i]
+            -}
+        ul
+            each m in month
+                li=m
+        ul
+            while i<= 4
+                li=i
+                - i++
+        mixin mix(name, pos, team)
+            li #{name} #{pos} #{team}
+
+        ul
+            +mix('a', 'this is a', '1')
+            +mix('b', 'this is 2', '2')
