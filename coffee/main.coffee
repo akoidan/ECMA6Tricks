@@ -3,7 +3,7 @@
 ###
 
 # single line
-first = () ->
+first = (p1) ->
   name = "Phil"
   csOutput = "Hello #{name} , 2+2 =#{2+2}"+' single quotes: #{2+2}';
   a =3
@@ -67,3 +67,51 @@ loops = ->
   loop
     console.log(++x)
     break if x <3
+
+f3 = (vars...)->
+  "this will automatically return"
+
+f4 = (asdf ="default") ->
+  console.log(asdf)
+f4()
+
+obj1 = {
+    a: 1
+    b: 2
+  }
+# obj1 = {a: 1. b: 2}
+for x,y of obj1
+  console.log(x,y)
+
+class Animal
+  name: "No name"
+  height: 0
+  sound: "no sound"
+  nonstatic: () ->
+    console.log('asd')
+  @numOfAnimals: 0 # static
+  @getNumOfAnimals: () ->
+    Animal.numOfAnimals
+  constructor: (name = "No name", @height = 0) ->
+    @name = name
+    Animal.numOfAnimals++
+  makeSound: ->
+    @sound
+
+
+grover = new Animal("name", 12)
+Animal::isBig = ->
+  @height -> 45 ? "yes" : "no"
+console.log("Get n of animals #{Animal.getNumOfAnimals()}")
+
+class Dog extends Animal
+  sound2: "No sound"
+  constructor: (name, height) ->
+    super(name, height)
+  makeSound: ->
+    super + " and #{@sound2}"
+
+sparky = new Dog("Sparky")
+sparky.sound = "Woof"
+sparky.sound2 = "Grrrrr"
+console.log(sparky.makeSound())
